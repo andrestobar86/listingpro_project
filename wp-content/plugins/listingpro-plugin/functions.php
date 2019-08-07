@@ -1118,6 +1118,8 @@ class ListingproPlugin{
 	
 	if (!function_exists('Listingpro_activation')) {
 		function Listingpro_activation() {
+		    //Remove activation prompt
+			update_option( 'theme_activation', 'activated' );
 			$status = get_option( 'theme_activation' );
 			if(empty($status) && $status != 'none'){
 				update_option( 'theme_activation', 'none' );
