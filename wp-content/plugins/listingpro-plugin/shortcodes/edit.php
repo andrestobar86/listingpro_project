@@ -179,10 +179,13 @@ if(!function_exists('listingpro_shortcode_edit')){
 			$current_user = wp_get_current_user();
 			$userID = $current_user->ID;
 			$post_author_id = get_post_field( 'post_author', $lp_post );
-
-			if($userID != $post_author_id) {
-				wp_redirect( home_url() ); exit;
+			//Admins can edit listings
+			if (!current_user_can('administrator')){
+				if($userID != $post_author_id) {
+					wp_redirect( home_url() ); exit;
+				}
 			}
+
 		}else{
 			wp_redirect( home_url() ); exit;
 		}
